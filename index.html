@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluechip Web Labs | Premium Local Business Solutions</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS VARIABLES (Senior Dev Practice) --- */
+        :root {
+            --primary: #0056D2;
+            --secondary: #00C9FF;
+            --dark: #0f172a;
+            --gray-light: #f8fafc;
+            --text-main: #334155;
+            --white: #ffffff;
+            --whatsapp: #25D366;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- RESET & GLOBAL STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: Aesthetic; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-main); 
+            background-color: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; color: var(--dark); }
+        a { text-decoration: none; transition: var(--transition); }
+        ul { list-style: none; }
+
+                /* --- CUSTOM NAVBAR --- */
+        header {
+            background: var(--white); /* Changed from rgba to solid white */
+            position: fixed; 
+            top: 0; 
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Slightly stronger shadow for depth */
+        }
+
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1200px; margin: 0 auto; padding: 15px 5%;
+        }
+        .logo {
+            font-size: 1.6rem; font-weight: 700; color: var(--primary);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .logo span { border: 2px solid var(--primary); padding: 2px 8px; border-radius: 4px; }
+
+        /* Desktop Menu */
+        .nav-menu { display: flex; gap: 30px; }
+        .nav-link { 
+            color: var(--dark); font-weight: 500; font-size: 0.95rem;
+            position: relative;
+        }
+        .nav-link:after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -5px; left: 0; background: var(--primary);
+            transition: var(--transition);
+        }
+        .nav-link:hover:after { width: 100%; }
+
+        /* Mobile Menu Toggle (Hamburger) */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger span { width: 25px; height: 3px; background: var(--dark); border-radius: 2px; transition: var(--transition); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 160px 5% 100px;
+            background: radial-gradient(circle at top right, #e0f2fe, white);
+            text-align: center;
+        }
+        .hero-badge {
+            background: #dbeafe; color: var(--primary);
+            padding: 6px 16px; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 600; display: inline-block; margin-bottom: 20px;
+        }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.2; margin-bottom: 20px; }
+        .hero p { max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem; }
+        .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        
+        .btn {
+            padding: 12px 32px; border-radius: 250px; font-weight: 600;
+            cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+        }
+        .btn-primary { background: var(--primary); color: var(--white); }
+        .btn-primary:hover { background: #0044a8; transform: translateY(-2px); box-shadow: var(--shadow); }
+        .btn-outline { border: 2px solid var(--primary); color: var(--primary); }
+
+     /* Styling and Animation for the Device Mockup with Curved Corners */
+.device-mockup {
+    width: 100%;
+    max-width: 550px; /* Limits size on computer screens */
+    height: auto;
+    /* --- CURVED CORNER UPDATES --- */
+    border-radius: 24px; /* Creates the professional curved design */
+    object-fit: cover;   /* Ensures the image content follows the curve */
+    /* ----------------------------- */
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.12)); /* Professional shadow */
+    animation: float 5s ease-in-out infinite; /* Adds a premium feel */
+    display: block;
+    margin: 0 auto;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+        /* --- SERVICES SECTION --- */
+        #services { padding: 100px 5%; background: var(--white); }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.2rem; margin-bottom: 15px; }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px; max-width: 1200px; margin: 0 auto;
+        }
+        .service-card {
+            padding: 40px; border-radius: 16px; background: var(--white);
+            border: 1px solid #e2e8f0; transition: var(--transition);
+        }
+        .service-card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: var(--shadow); }
+        .service-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; display: block; }
+        .price-tag { color: var(--primary); font-weight: 700; font-size: 1.2rem; display: block; margin-top: 15px; }
+
+        /* --- FEATURES SECTION --- */
+        .features-banner {
+            background: var(--dark); color: var(--white);
+            padding: 80px 5%; margin: 50px 0; border-radius: 0;
+        }
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px; max-width: 1200px; margin: 0 auto;
+        }
+        .feature-item { display: flex; align-items: center; gap: 15px; font-size: 1.1rem; }
+        .feature-item i { color: var(--secondary); }
+
+       /* --- UPDATED PROJECTS SECTION --- */
+#projects { 
+    padding: 100px 5%; 
+    background: #f1f5f9; 
+}
+
+.project-grid {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px; 
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+.project-card {
+    background: var(--white); 
+    border-radius: 20px; 
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.project-preview {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    /* नवा Shimmer इफेक्ट खालीलप्रमाणे */
+    background: #f6f7f8 linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-size: 800px 100%;
+    animation: shimmer 1.5s infinite linear;
+}
+
+/* हा भाग स्टाइल टॅगच्या शेवटी कुठेही टाकला तरी चालेल */
+@keyframes shimmer {
+    0% { background-position: -468px 0; }
+    100% { background-position: 468px 0; }
+}
+
+
+.project-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This makes the image fit the border perfectly */
+    object-position: top;
+    display: block;
+}
+
+.project-info { 
+    padding: 24px; 
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+}
+
+.project-btn {
+    margin-top: auto; 
+    background: var(--dark);
+    color: white;
+    padding: 12px;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+        /* --- CONTACT SECTION --- */
+        #contact { padding: 100px 5%; max-width: 1000px; margin: 0 auto; }
+        .contact-flex { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        input, textarea {
+            width: 100%; padding: 14px; border: 1px solid #cbd5e1;
+            border-radius: 8px; font-size: 1rem; outline: none; transition: var(--transition);
+        }
+        input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,86,210,0.1); }
+
+        /* --- FLOATING ELEMENTS --- */
+        .whatsapp-btn {
+            position: fixed; left: 30px; bottom: 30px;
+            background: var(--whatsapp); color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 999;
+        }
+        .back-to-top {
+            position: fixed; right: 30px; bottom: 30px;
+            background: var(--dark); color: white;
+            width: 45px; height: 45px; border-radius: 8px;
+            display: none; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 999;
+        }
+
+        /* --- MOBILE NAVIGATION LOGIC --- */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu {
+                position: fixed; top: 75px; left: -100%;
+                flex-direction: column; background: var(--white);
+                width: 100%; height: calc(100vh - 75px);
+                padding: 40px 5%; transition: 0.4s;
+                gap: 20px; box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+            }
+            .nav-menu.active { left: 0; }
+            .contact-flex { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.2rem; }
+        }
+        
+        
+        /* --- SMOOTH FAQ SECTION --- */
+#faq { padding: 100px 5%; background: var(--white); }
+.faq-container { max-width: 850px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #e2e8f0; margin-bottom: 10px; }
+.faq-question {
+    width: 100%; padding: 20px; display: flex; justify-content: space-between;
+    align-items: center; background: none; border: none; outline: none;
+    cursor: pointer; text-align: left; font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem; font-weight: 600; color: var(--dark);
+}
+.faq-answer {
+    max-height: 0; overflow: hidden; 
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+    padding: 0 20px; color: var(--text-main);
+}
+.faq-item.active .faq-answer { 
+    max-height: 500px; /* Purishi height dya */
+    padding-bottom: 20px; 
+}
+.faq-question i { transition: transform 0.3s ease; color: var(--primary); }
+.faq-item.active .faq-question i { transform: rotate(180deg); }
+
+/* --- ANIMATIONS RULES --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* सुरुवातीला हे सेक्शन्स अदृश्य राहतील */
+.hero h1, .hero p, .hero-btns, .service-card, .project-card, .device-mockup {
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* जेव्हा स्क्रोल केल्यावर हा क्लास येईल, तेव्हा ॲनिमेशन दिसेल */
+.visible {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Landing Page Fade-in (Hero Section) */
+.hero h1 { animation: fadeInUp 0.8s ease-out forwards; }
+.hero p { animation: fadeInUp 0.8s ease-out 0.3s forwards; }
+.hero-btns { animation: fadeInUp 0.8s ease-out 0.5s forwards; }
+.btn-primary {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 86, 210, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 86, 210, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 86, 210, 0); }
+}
+
+
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/918468825420" class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+       <header>
+        <nav class="nav-container">
+            <a href="#" class="logo">
+                <img src="logo1.png" loading="lazy" alt="Bluechip Web Labs Logo" style="height: 50px; width: auto; object-fit: contain; mix-blend-mode: multiply;">
+
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#projects" class="nav-link">Our Projects</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+        <section class="hero" id="home">
+            <span class="hero-badge">Specializing in Local Brand Growth</span>
+            <h1>Scale Your Brand With Premium
+
+ <br><span style="color: var(--primary);">High-Performance Static Websites</span></h1>
+            <p>We build lightning-fast, secure, and SEO-optimized websites designed to convert local traffic into loyal customers. Pricing starts from ₹12,000.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">Start a Project <i class="fas fa-arrow-right"></i></a>
+                <a href="tel:918468825420" class="btn btn-outline"><i class="fas fa-phone"></i>Call for Inquiry</a>
+            </div>
+        </section>
+
+       <section id="about" style="padding: 100px 5%; background: #fff;">
+    <div class="contact-flex" style="align-items: center;">
+        <div style="position: relative; text-align: center;">
+            <img src="mockup.png" loading="lazy" alt="Responsive Design Mockup" class="device-mockup">
+        </div>
+        
+        <div>
+            <h2 style="margin-bottom: 20px;">Helping Local Brands <br>Scale Digitally</h2>
+            <p>At <strong>Bluechip Web Labs</strong>, we specialize in creating static architectures that are 10x faster than traditional builders. We help local businesses increase their productivity by automating their digital presence.</p>
+            <ul style="margin-top: 20px;">
+                <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> Custom coded, No bulky templates</li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> Mobile-first responsive design</li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> Local SEO optimization included</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+      <section id="services">
+    <div class="section-header">
+        <h2>Our Specialized Services</h2>
+        <p>Premium solutions designed to give your local business a competitive edge.</p>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <i class="fas fa-pencil-ruler"></i>
+            <h3>High-Performance Development</h3>
+            <p style="font-size: 0.9rem; line-height: 1.5;">We build websites using "Static Architecture," making them 10x faster and secure. No bulky plugins, just clean code for a lightning-fast experience.</p>
+        </div>
+
+        <div class="service-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Conversion-Optimized Design</h3>
+            <p style="font-size: 0.9rem; line-height: 1.5;">Our designs aren't just pretty; they are engineered to convert visitors into customers. We focus on layouts and Call-to-Actions that drive real sales.</p>
+        </div>
+
+        <div class="service-card">
+            <i class="fas fa-rocket"></i>
+            <h3>Digital Growth & SEO</h3>
+            <p style="font-size: 0.9rem; line-height: 1.5;">Get found on Google with Local SEO. We integrate WhatsApp lead tools to ensure your digital presence translates into consistent business growth.</p>
+            <span class="price-tag">₹12k - ₹35k</span>
+        </div>
+    </div>
+</section>
+
+
+
+
+        <section class="features-banner">
+    <h2 style="color: white; text-align: center; margin-bottom: 50px;">Every Project Includes</h2>
+    <div class="features-grid">
+        <div class="feature-item"><i class="fas fa-globe"></i> 1 Year Free Domain Name</div>
+        <div class="feature-item"><i class="fas fa-cloud"></i> 1 Year Free Cloud Hosting</div>
+        <div class="feature-item"><i class="fas fa-sync"></i> Annual Hosting Renewal: ₹4,000</div>
+        
+        <div class="feature-item"><i class="fas fa-mobile-alt"></i> 100% Responsive Website</div>
+        <div class="feature-item"><i class="fas fa-search"></i> SEO Friendly Architecture</div>
+        <div class="feature-item"><i class="fas fa-users"></i> Social Media Integration</div>
+        
+        <div class="feature-item"><i class="fas fa-file-alt"></i> Custom Inquiry Form</div>
+        <div class="feature-item"><i class="fas fa-phone-square-alt"></i> Call Button Integration</div>
+        <div class="feature-item"><i class="fas fa-map-marker-alt"></i> Google Map Integration</div>
+        
+        <div class="feature-item"><i class="fas fa-tools"></i> 1 Year Technical Support</div>
+        <div class="feature-item"><i class="fas fa-headset"></i> 24/7 Priority Support</div>
+    </div>
+</section>
+
+
+       <section id="projects">
+    <div class="section-header">
+        <h2>Our Successful Deployments</h2>
+        <p>Click on a project to view the live website.</p>
+    </div>
+  <div class="project-grid">
+    <div class="project-card">
+        <div class="project-preview">
+            <img src="redchilli.png" 
+         loading="lazy"  alt="Hotel Red Chilly">
+        </div>
+        <div class="project-info">
+            <h3>Hotel Red Chilly</h3>
+            <p>Hospitality & Restaurant Website</p>
+            <a href="#" class="project-btn live-link" data-link="https://dhirajpatil1022.github.io/HotelRedChilly/">Visit Live Site <i class="fas fa-external-link-alt"></i></a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="project-preview">
+            <img src="patilele.png"
+           loading="lazy" alt="Patil Electricals">
+        </div>
+        <div class="project-info">
+            <h3>Patil Electricals</h3>
+            <p>Industrial Service Provider</p>
+            <a href="#" class="project-btn live-link" data-link="https://dhirajpatil1022.github.io/Patil-Electricals-/">Visit Live Site <i class="fas fa-external-link-alt"></i></a>
+        </div>
+    </div>
+
+    <div class="project-card">
+        <div class="project-preview">
+            <img src="harshex.jpg"
+           loading="lazy" alt="Harsh Executive">
+        </div>
+        <div class="project-info">
+            <h3>Harsh Executive</h3>
+            <p>Corporate Hospitality</p>
+            <a href="#" class="project-btn live-link" data-link="https://harshexecutive.example.com">Visit Live Site <i class="fas fa-external-link-alt"></i></a>
+        </div>
+    </div>
+</div>
+
+
+</section>
+
+<section id="faq">
+    <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+        <h2>Frequently Asked Questions</h2>
+        <p>Helping you understand our process and services better.</p>
+    </div>
+    <div class="faq-container">
+        <div class="faq-item">
+            <button class="faq-question">How long does it take to build a complete website? <i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer">
+                <p>Typically, we deliver a fully functional and professional website within 5 to 7 working days. This timeline includes design customization, content integration, and final testing. Our goal is to get your business online as quickly as possible without compromising on quality.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Is the Domain and Hosting really free for the first year? <i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer">
+                <p>Yes, our package includes a complimentary .com or .in domain and premium cloud hosting for the first year. We believe in providing a hassle-free start for local brands, so you don't have to worry about additional technical costs during your initial launch.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What if I need to make changes later? <i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer">
+                <p>We offer seamless technical support for all our clients. If you need to update your menu, services, or contact details, you can simply reach out to us via our dedicated WhatsApp support channel. We ensure your website reflects the latest information about your growing business.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Will my business show up on Google search results? <i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer">
+                <p>Absolutely! Every project we undertake includes Basic SEO (Search Engine Optimization). We register your site with Google Search Console and optimize your meta tags so that local customers can easily find your brand when searching for your services online.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What is "Static Architecture" and why is it better? <i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer">
+                <p>Static websites are built with clean, high-performance code that loads 10x faster than traditional builders. This architecture is incredibly secure against hacking attempts and provides a smooth experience even on slow internet connections, making it perfect for local growth.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <section id="contact">
+            <div class="section-header">
+                <h2>Ready to Start?</h2>
+                <p>Send us an inquiry and we'll get back to you within 24 hours.</p>
+            </div>
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="margin-bottom: 10px;">Contact Details</h4>
+                        <p><i class="fas fa-phone" style="color: var(--primary);"></i> +91 8468825420</p>
+                        <p><i class="fas fa-envelope" style="color: var(--primary);"></i> dhirajpatil1022@gmail.com</p>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 10px;">Office Hours</h4>
+                        <p>Mon - Sat: 10:00 AM - 7:00 PM</p>
+                        <p>Sun: Closed (Support via WhatsApp)</p>
+                    </div>
+                </div>
+                <form class="contact-form" id="inquiryForm">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="email" placeholder="example@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+    <label>Mobile Number</label>
+    <input type="tel" id="phone" 
+           placeholder="Your 10-digit number" 
+           pattern="[0-9]{10}" 
+           title="Please enter a valid 10-digit mobile number" 
+           required>
+</div>
+
+                    <div class="form-group">
+                        <label>Your Requirement</label>
+                        <textarea id="message" rows="4" placeholder="Tell us about your brand..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; border: none;">Send Inquiry via WhatsApp</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: var(--dark); color: #94a3b8; padding: 50px 5%; text-align: center;">
+        <p style="color: white; margin-bottom: 10px;">Bluechip Web Labs</p>
+        <p>&copy; 2026 All Rights Reserved. Crafted for Local Success.</p>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu Toggle Logic
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            // Animate Hamburger to X
+            const spans = hamburger.querySelectorAll('span');
+            spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
+            spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+            spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(6px, -6px)' : 'none';
+        });
+
+        // Close menu when a link is clicked (Mobile)
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // 2. Back to Top Button Visibility
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 3. Project Link Handling
+        // This is where you will add your actual links later
+        const projectLinks = document.querySelectorAll('.live-link');
+        projectLinks.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetUrl = btn.getAttribute('data-link');
+                if(targetUrl && !targetUrl.includes('example.com')) {
+                    window.open(targetUrl, '_blank');
+                } else {
+                    alert("This project link will be updated soon! Stay tuned.");
+                }
+            });
+        });
+
+        // 4. WhatsApp Inquiry Form Integration (Fixed to include Phone Number)
+const inquiryForm = document.getElementById('inquiryForm');
+inquiryForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const business = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value; // Get the number from input
+    const msg = document.getElementById('message').value;
+    
+    // Format WhatsApp Message to include the Phone Number
+    const wpText = `Hello Bluechip Web Labs!%0A` +
+                   `My name is: ${name}%0A` +
+                   `Email: ${business}%0A` +
+                   `Mobile Number: ${phone}%0A` + // This adds the number to the message
+                   `Requirement: ${msg}`;
+                   
+    window.open(`https://wa.me/918468825420?text=${wpText}`, '_blank');
+});
+
+
+// FAQ Accordion Logic
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        // Close all other FAQ items
+        document.querySelectorAll('.faq-item').forEach(faqItem => {
+            faqItem.classList.remove('active');
+            faqItem.querySelector('.faq-answer').style.maxHeight = null;
+        });
+
+        // Toggle current item
+        if (!isActive) {
+            item.classList.add('active');
+            const answer = item.querySelector('.faq-answer');
+            answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+    });
+});
+// Reveal on Scroll Logic
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { 
+    threshold: 0.1 // जेव्हा १०% सेक्शन दिसेल तेव्हा ॲनिमेशन सुरू होईल
+});
+
+// ज्या गोष्टींना ॲनिमेट करायचे आहे त्यांना ऑब्झर्व्ह करा
+document.querySelectorAll('.service-card, .project-card, .device-mockup, .section-header').forEach((el) => {
+    revealObserver.observe(el);
+});
+
+// Custom Smooth & Slow Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 70, // 70px Header साठी जागा सोडली आहे
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+
+    </script>
+</body>
+</html>
